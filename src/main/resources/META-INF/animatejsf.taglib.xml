@@ -31,8 +31,8 @@
         <description><![CDATA[]]></description>
         <tag-name>animate</tag-name>
         <component>
-            <component-type>ha.animatejsf.Animate</component-type>
-            <renderer-type>ha.animatejsf.AnimateRenderer</renderer-type>
+            <component-type>org.animatejsf.Animate</component-type>
+            <renderer-type>org.animatejsf.AnimateRenderer</renderer-type>
         </component>
         <attribute>
            <description><![CDATA[The type of animation]]></description>

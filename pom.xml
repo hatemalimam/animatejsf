@@ -22,12 +22,34 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>animatejsf-core</artifactId>
-    <groupId>ha.animatejsf</groupId>
+    <artifactId>animatejsf</artifactId>
+    <groupId>org.animatejsf</groupId>
     <packaging>jar</packaging>
-    <name>animatejsf-core</name>
-    <description>www.animatejsf.com</description>
-    <version>1.0-SNAPSHOT</version>
+    <name>animatejsf</name>
+    <description>A thin JSF Library based on animate.css</description>
+    <version>1.0</version>
+    <url>http://www.animatejsf.org</url>
+    
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <scm>
+        <url>https://github.com/hatemalimam/animatejsf.git</url>
+        <connection>https://github.com/hatemalimam/animatejsf.git</connection>
+    </scm>
+    
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Hatem Alimam</name>
+            <email>me@hatemalimam.com</email>
+        </developer>
+    </developers>
     
     <properties>
         <shortname>animate</shortname>
@@ -188,6 +210,19 @@
         </resources>
         <plugins>
             <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-gpg-plugin</artifactId>
+		        <executions>
+		          <execution>
+		            <id>sign-artifacts</id>
+		            <phase>verify</phase>
+		            <goals>
+		              <goal>sign</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		      </plugin>
+            <plugin>
                 <groupId>org.apache.myfaces.buildtools</groupId>
                 <artifactId>myfaces-builder-plugin</artifactId>
                 <executions>
@@ -220,7 +255,7 @@
                             <templateFile>animatejsf.tld.vm</templateFile>
                             <params>
                                <shortname>${shortname}</shortname>
-                               <uri>http://www.animatejsf.com/${shortname}</uri>
+                               <uri>http://www.animatejsf.org/${shortname}</uri>
                                <displayname>Animate JSF</displayname>
                                <description>A thin JSF Library based on animate.css</description>
                             </params>
@@ -237,7 +272,7 @@
                             <templateFile>facelets-taglib20.vm</templateFile>
                             <params>
                                  <shortname>${shortname}</shortname>
-                                 <uri>http://www.animatejsf.com/${shortname}</uri>
+                                 <uri>http://www.animatejsf.org/${shortname}</uri>
                             </params>
                         </configuration>
                         <goals>
@@ -291,15 +326,29 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.8</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadoc</id>
-                                <goals><goal>jar</goal></goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+					  <groupId>org.apache.maven.plugins</groupId>
+					  <artifactId>maven-javadoc-plugin</artifactId>
+					  <executions>
+					    <execution>
+					      <id>attach-javadocs</id>
+					      <goals>
+					        <goal>jar</goal>
+					      </goals>
+					    </execution>
+					  </executions>
+					</plugin>
+					<plugin>
+					  <groupId>org.apache.maven.plugins</groupId>
+					  <artifactId>maven-source-plugin</artifactId>
+					  <executions>
+					    <execution>
+					      <id>attach-sources</id>
+					      <goals>
+					        <goal>jar</goal>
+					      </goals>
+					    </execution>
+					  </executions>
+					</plugin>
                     <plugin>
                         <groupId>net.sourceforge.maven-taglib</groupId>
                         <artifactId>maven-taglib-plugin</artifactId>
