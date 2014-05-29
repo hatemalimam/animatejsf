@@ -5,14 +5,15 @@
 function animatejsf(id, type) {
 	if (window.jQuery) {  
 		jQuery(document).ready(function() {		
-			var element = jQuery(escapeClientId(id));			
+			var element = jQuery(escapeClientId(id));	
+			emptyjQueryClasses(element);	
 			element.addClass("animated");
-			element.addClass(type);
-			
+			element.addClass(type);					
 	    });  
 	} else {
 		jsready(function(){
 			var element = document.getElementById(id);
+			emptyJSClasses(element);
 			element.classList.add("animated");
 			element.classList.add(type);
 		});
@@ -249,3 +250,25 @@ var jsready = (function(){
     }
     return ready;
 })();
+
+var animationTypes = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble',
+                      'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp',
+                      'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
+                      'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight',
+                      'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut', 'fadeOutDown', 'fadeOutDownBig',
+                      'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 
+                      'fadeOutUpBig', 'flip', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'lightSpeedIn',
+                      'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft',
+                      'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft',
+                      'rotateOutUpRight', 'slideInDown', 'slideInLeft', 'slideInRight', 'slideOutLeft', 'slideOutRight',
+                      'slideOutUp', 'hinge', 'rollIn', 'rollOut'];
+
+function emptyjQueryClasses(element) {	
+	element.removeClass(animationTypes.join(' '));	
+}
+
+function emptyJSClasses(element) {	
+	for (var i = 0; i < animationTypes.length; i++) { 	    
+	    element.classList.remove(animationTypes[i]);
+	}	
+}

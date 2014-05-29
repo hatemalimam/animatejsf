@@ -7,29 +7,53 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.ClientBehaviorBase;
 import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.component.behavior.FacesBehavior;
+import javax.faces.context.FacesContext;
 
-@FacesBehavior("org.animatejsf.behavior.animate")
+import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFBehavior;
+import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFProperty;
+
 @ResourceDependencies({
 		@ResourceDependency(library = "animatejsf", name = "animate.css"),
 		@ResourceDependency(library = "animatejsf", name = "animatejsf.js") })
 public class AnimateBehavior extends ClientBehaviorBase {
-	protected String type;
-
-	public String getType() {
-		return type;
-	}
+	
+	public static final String BEHAVIOR_ID = "org.animatejsf.behavior.AnimateBehavior";
+	private String type;
+	private String target;
+	 
+	/**
+     * The type of animation
+     * 
+     */
+    @JSFProperty
+    public String getType() {
+    	return type;
+    }
 
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	public void setTarget(String target) {
+		this.target = target;
+	}
+
+	/**
+     * JSF component to run animation on
+     * 
+     */
+    @JSFProperty
+    public String getTarget() {
+    	return target;
+    }
+    
 	@Override
 	public String getScript(ClientBehaviorContext behaviorContext) {
-		//FacesContext ctx = behaviorContext.getFacesContext();
-		UIComponent parent = behaviorContext.getComponent();
-		String targetId = parent.getClientId();
-		if (type != null) {
-			return "animatejsf('" + targetId + "','"+ type +"')";
+		FacesContext facesContext = behaviorContext.getFacesContext();				
+		if (getType() != null) {
+			UIComponent targetUiComponent = facesContext.getViewRoot().findComponent(getTarget());
+			return "animatejsf('" + targetUiComponent.getClientId()
+					+ "','" + getType() + "')";
 		} else
 			throw new FacesException("Cannot find target component");
 		

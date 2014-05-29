@@ -18,7 +18,7 @@
  */
 package org.animatejsf.component.animate;
 
-import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIPanel;
 
 import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFComponent;
 import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFProperty;
@@ -31,7 +31,7 @@ import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFPropert
         name = "aj:animate",
         clazz="org.animatejsf.component.animate.Animate",
         tagClass = "org.animatejsf.component.animate.AnimateTag")
-public abstract class AbstractAnimate extends UIComponentBase
+public abstract class AbstractAnimate extends UIPanel
 {
     public static final String COMPONENT_TYPE = "org.animatejsf.Animate";
     public static final String DEFAULT_RENDERER_TYPE = "org.animatejsf.AnimateRenderer";

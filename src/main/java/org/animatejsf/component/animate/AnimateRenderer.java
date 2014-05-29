@@ -75,8 +75,12 @@ public class AnimateRenderer extends Renderer {
 		String target = animate.getTarget();
 		UIComponent targetUiComponent = facesContext.getViewRoot().findComponent(target);
 		if(targetUiComponent != null) {
-			writer.write("<script>animatejsf('" + targetUiComponent.getClientId()
-					+ "','" + type + "')</script>");
+			writer.startElement("script", animate);
+			writer.writeAttribute("id", animate.getClientId(), null);
+			writer.writeAttribute("type", "text/javascript", null);
+			writer.write("animatejsf('" + targetUiComponent.getClientId()
+					+ "','" + type + "')");
+			writer.endElement("script");
 		} else {
 			throw new IllegalArgumentException("Target Component: " + target + "can not be found");
 		}
