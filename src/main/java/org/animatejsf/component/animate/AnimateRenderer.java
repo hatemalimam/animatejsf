@@ -40,27 +40,6 @@ import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFRendere
 public class AnimateRenderer extends Renderer {
 
 	@Override
-	public void decode(FacesContext facesContext, UIComponent uiComponent) {
-		super.decode(facesContext, uiComponent);
-		// nothing to decode
-	}
-
-	@Override
-	public void encodeBegin(FacesContext facesContext, UIComponent uiComponent)
-			throws IOException {
-		super.encodeBegin(facesContext, uiComponent);
-		// no need to use encodeBegin.
-
-	}
-
-	@Override
-	public void encodeChildren(FacesContext facesContext,
-			UIComponent uiComponent) throws IOException {
-		super.encodeChildren(facesContext, uiComponent);
-		// this component does not have children
-	}
-
-	@Override
 	public void encodeEnd(FacesContext facesContext, UIComponent uiComponent)
 			throws IOException {
 		super.encodeEnd(facesContext, uiComponent);
@@ -86,10 +65,4 @@ public class AnimateRenderer extends Renderer {
 		}
 		
 	}
-
-	@Override
-	public boolean getRendersChildren() {
-		return true;
-	}
-
 }
