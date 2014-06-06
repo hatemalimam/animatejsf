@@ -6,3 +6,5 @@ target/
 *.asc
 .metadata/
 Servers/
+.gitignoew.swp
+.gitignore
