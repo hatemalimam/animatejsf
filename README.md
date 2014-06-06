@@ -19,6 +19,12 @@ Installation
 ```
 Or you can always include the [jar file]
 
+Namespace
+--------------
+```sh
+xmlns:aj="http://www.animatejsf.org/animate"
+```
+
 Usage
 --------------
 ```sh
