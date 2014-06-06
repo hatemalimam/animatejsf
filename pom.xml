@@ -23,7 +23,7 @@
 	<packaging>jar</packaging>
 	<name>animatejsf</name>
 	<description>A thin JSF Library based on animate.css</description>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<url>http://www.animatejsf.org</url>
 
 	<licenses>
