@@ -17,6 +17,7 @@ Installation
        <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
+Or you can always include the [jar file]
 
 Usage
 --------------
@@ -98,3 +99,4 @@ Apache License, Version 2.0
 
 [animate.css]:http://daneden.github.io/animate.css/
 [animatejsf.org]:http://animatejsf.org
+[jar file]:https://oss.sonatype.org/content/repositories/releases/org/animatejsf/animatejsf/1.0/animatejsf-1.0.jar
