@@ -14,7 +14,7 @@ Installation
 <dependency>
        <groupId>org.animatejsf</groupId>
        <artifactId>animatejsf</artifactId>
-       <version>1.0</version>
+       <version>1.1</version>
 </dependency>
 ```
 Or you can always include the [jar file]
