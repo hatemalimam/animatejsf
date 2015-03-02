@@ -9,14 +9,7 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>animatejsf</artifactId>
@@ -24,7 +17,7 @@
 	<packaging>jar</packaging>
 	<name>animatejsf</name>
 	<description>A thin JSF Library based on animate.css</description>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<url>http://www.animatejsf.org</url>
 
 	<licenses>
@@ -35,10 +28,25 @@
 		</license>
 	</licenses>
 
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>${sonatypeOssDistMgmtSnapshotsUrl}</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
 	<scm>
 		<url>git@github.com:hatemalimam/animatejsf.git</url>
 		<connection>scm:git:git@github.com:hatemalimam/animatejsf.git</connection>
 		<developerConnection>scm:git:git@github.com:hatemalimam/animatejsf.git</developerConnection>
+		<tag>animatejsf-1.1</tag>
 	</scm>
 
 	<developers>
@@ -52,6 +60,8 @@
 	<properties>
 		<shortname>animate</shortname>
 		<javase.version>1.6</javase.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</sonatypeOssDistMgmtSnapshotsUrl>
 	</properties>
 
 	<dependencies>
@@ -126,6 +136,31 @@
 				</executions>
 			</plugin>
 
+
+			<!-- Configure the jar with the javadoc (or rather, convince Maven that 
+				we want javadoc at all) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.1</version>
+				<configuration>
+					<javadocVersion>1.8</javadocVersion>
+					<notimestamp>true</notimestamp>
+					<splitindex>true</splitindex>
+					<doctitle>OmniFaces API documentation</doctitle>
+					<links>
+						<link>https://docs.oracle.com/javaee/7/api/</link>
+					</links>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- Deploying is done via sonatype's Nexus Snapshot deploy: mvn clean 
 				deploy Release deploy: mvn clean deploy -P release -->
