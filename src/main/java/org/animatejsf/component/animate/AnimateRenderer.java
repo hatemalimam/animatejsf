@@ -25,23 +25,22 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
-
-import org.animatejsf.component.animate.Animate;
-import org.apache.myfaces.buildtools.maven2.plugin.builder.annotation.JSFRenderer;
 
 /**
  * 
  */
-@JSFRenderer(renderKitId = "HTML_BASIC", family = "javax.faces.Output", type = "org.animatejsf.AnimateRenderer")
-@ResourceDependencies({
-		@ResourceDependency(library = "animatejsf", name = "animate.css"),
+@FacesRenderer(componentFamily = AnimateRenderer.COMPONENT_FAMILY, rendererType = AnimateRenderer.RENDERER_TYPE)
+@ResourceDependencies({ @ResourceDependency(library = "animatejsf", name = "animate.css"),
 		@ResourceDependency(library = "animatejsf", name = "animatejsf.js") })
 public class AnimateRenderer extends Renderer {
 
+	public static final String RENDERER_TYPE = "org.animatejsf.AnimateRenderer";
+	public static final String COMPONENT_FAMILY = "javax.faces.Output";
+
 	@Override
-	public void encodeEnd(FacesContext facesContext, UIComponent uiComponent)
-			throws IOException {
+	public void encodeEnd(FacesContext facesContext, UIComponent uiComponent) throws IOException {
 		super.encodeEnd(facesContext, uiComponent);
 
 		if (!uiComponent.isRendered()) {
@@ -49,20 +48,19 @@ public class AnimateRenderer extends Renderer {
 		}
 		ResponseWriter writer = facesContext.getResponseWriter();
 
-		Animate animate = (Animate) uiComponent;
-		String type = animate.getType();		
-		String target = animate.getTarget();
+		AnimateComponent animateComponent = (AnimateComponent) uiComponent;
+		String type = animateComponent.getType();
+		String target = animateComponent.getTarget();
 		UIComponent targetUiComponent = facesContext.getViewRoot().findComponent(target);
-		if(targetUiComponent != null) {
-			writer.startElement("script", animate);
-			writer.writeAttribute("id", animate.getClientId(), null);
+		if (targetUiComponent != null) {
+			writer.startElement("script", animateComponent);
+			writer.writeAttribute("id", animateComponent.getClientId(), null);
 			writer.writeAttribute("type", "text/javascript", null);
-			writer.write("animatejsf('" + targetUiComponent.getClientId()
-					+ "','" + type + "')");
+			writer.write("animatejsf('" + targetUiComponent.getClientId() + "','" + type + "')");
 			writer.endElement("script");
 		} else {
 			throw new IllegalArgumentException("Target Component: " + target + "can not be found");
 		}
-		
+
 	}
 }
