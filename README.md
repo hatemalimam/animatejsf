@@ -5,7 +5,7 @@ A thin JSF Library based on [animate.css]
 
 Demo
 -----------
-[animatejsf.org]
+[http://jsf.hatemalimam.com/animatejsf/]
 
 Installation
 --------------
